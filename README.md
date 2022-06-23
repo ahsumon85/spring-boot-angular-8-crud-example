@@ -6,3 +6,5 @@ Data Access Object Pattern or DAO pattern is used to separate low level data acc
   #### Data Access Object concrete class - This class implements above interface. This class is responsible to get data from a data source which can be database / xml or any    other storage mechanism.
 
   #### Model Object or Value Object - This object is simple POJO containing get/set methods to store data retrieved using DAO class.
+  
+ 
