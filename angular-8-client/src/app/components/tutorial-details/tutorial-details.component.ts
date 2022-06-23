@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TutorialService } from 'src/app/services/tutorial.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TutorialDaoImpl } from 'src/app/services/tutorial.dao.impl';
+import { TutorialDao } from 'src/app/services/tutorial.dao.service';
 
 @Component({
   selector: 'app-tutorial-details',
@@ -10,9 +11,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TutorialDetailsComponent implements OnInit {
   currentTutorial = null;
   message = '';
-
+  tutorialService: TutorialDao;
   constructor(
-    private tutorialService: TutorialService,
+    private tutorialDaoImpl: TutorialDaoImpl,
     private route: ActivatedRoute,
     private router: Router) { }
 

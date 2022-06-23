@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TutorialService } from 'src/app/services/tutorial.service';
+import { TutorialDaoImpl } from 'src/app/services/tutorial.dao.impl';
+import { TutorialDao } from 'src/app/services/tutorial.dao.service';
 
 @Component({
   selector: 'app-add-tutorial',
@@ -14,7 +15,11 @@ export class AddTutorialComponent implements OnInit {
   };
   submitted = false;
 
-  constructor(private tutorialService: TutorialService) { }
+  tutorialService: TutorialDao;
+
+  constructor(private tutorialDaoImpl: TutorialDaoImpl) { 
+    this.tutorialService = this.tutorialDaoImpl;
+  }
 
   ngOnInit() {
   }

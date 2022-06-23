@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TutorialService } from 'src/app/services/tutorial.service';
+import { TutorialDaoImpl } from 'src/app/services/tutorial.dao.impl';
+import { TutorialDao } from 'src/app/services/tutorial.dao.service';
 
 @Component({
   selector: 'app-tutorials-list',
@@ -13,14 +14,19 @@ export class TutorialsListComponent implements OnInit {
   currentIndex = -1;
   title = '';
 
-  constructor(private tutorialService: TutorialService) { }
+  tutorialDao: TutorialDao;
+
+  constructor(private tutorialDaoImpl: TutorialDaoImpl) { 
+    console.log(this.tutorialDaoImpl);
+    this.tutorialDao = this.tutorialDaoImpl;
+  }
 
   ngOnInit() {
     this.retrieveTutorials();
   }
 
   retrieveTutorials() {
-    this.tutorialService.getAll()
+    this.tutorialDao.getAll()
       .subscribe(
         data => {
           this.tutorials = data;
@@ -43,7 +49,7 @@ export class TutorialsListComponent implements OnInit {
   }
 
   removeAllTutorials() {
-    this.tutorialService.deleteAll()
+    this.tutorialDao.deleteAll()
       .subscribe(
         response => {
           console.log(response);
@@ -55,7 +61,7 @@ export class TutorialsListComponent implements OnInit {
   }
 
   searchTitle() {
-    this.tutorialService.findByTitle(this.title)
+    this.tutorialDao.findByTitle(this.title)
       .subscribe(
         data => {
           this.tutorials = data;

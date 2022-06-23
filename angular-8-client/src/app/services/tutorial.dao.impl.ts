@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { TutorialDao } from './tutorial.dao.service';
 
 const baseUrl = 'http://localhost:8080/api/tutorials';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TutorialService {
+export class TutorialDaoImpl extends TutorialDao{
+  
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    super();
+  }
 
   getAll() {
     return this.http.get(baseUrl);
